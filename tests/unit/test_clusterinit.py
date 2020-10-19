@@ -143,7 +143,7 @@ def test_clusterinit_run_cmd_pods_init_failure(caplog):
             clusterinit.run_pods(None, ["init"], "fake_img",
                                  "Never", "fake-conf-dir", "fake-install-dir",
                                  "2", "2", ["fakenode"], "", "", "vertical",
-                                 "vertical", "default", "-1")
+                                 "vertical", "default", "-1", False)
         exp_err = "Exception when creating pod for ['init'] command(s)"
         exp_log_err = get_expected_log_error(exp_err)
         caplog_tuple = caplog.record_tuples
@@ -160,7 +160,7 @@ def test_clusterinit_run_cmd_pods_discover_failure(caplog):
             clusterinit.run_pods(None, ["discover"], "fake_img", "Never",
                                  "fake-conf-dir", "fake-install-dir", "2",
                                  "2", ["fakenode"], "", "", "vertical",
-                                 "vertical", "default", "-1")
+                                 "vertical", "default", "-1", False)
         exp_err = "Exception when creating pod for ['discover'] command(s)"
         exp_log_err = get_expected_log_error(exp_err)
         caplog_tuple = caplog.record_tuples
@@ -177,7 +177,7 @@ def test_clusterinit_run_cmd_pods_install_failure(caplog):
             clusterinit.run_pods(None, ["install"], "fake_img", "Never",
                                  "fake-conf-dir", "fake-install-dir", "2",
                                  "2", ["fakenode"], "", "", "vertical",
-                                 "vertical", "default", "-1")
+                                 "vertical", "default", "-1", False)
         exp_err = "Exception when creating pod for ['install'] command(s)"
         exp_log_err = get_expected_log_error(exp_err)
         caplog_tuple = caplog.record_tuples
@@ -194,7 +194,7 @@ def test_clusterinit_run_cmd_pods_reconcile_failure(caplog):
             clusterinit.run_pods(["reconcile"], None, "fake_img", "Never",
                                  "fake-conf-dir", "fake-install-dir", "2",
                                  "2", ["fakenode"], "", "", "vertical",
-                                 "vertical", "default", "-1")
+                                 "vertical", "default", "-1", False)
         exp_err = "Exception when creating pod for ['reconcile'] command(s)"
         exp_log_err = get_expected_log_error(exp_err)
         caplog_tuple = caplog.record_tuples
@@ -211,7 +211,7 @@ def test_clusterinit_run_cmd_pods_nodereport_failure(caplog):
             clusterinit.run_pods(["nodereport"], None, "fake_img", "Never",
                                  "fake-conf-dir", "fake-install-dir", "2",
                                  "2", ["fakenode"], "", "", "vertical",
-                                 "vertical", "default", "-1")
+                                 "vertical", "default", "-1", False)
         exp_err = "Exception when creating pod for ['nodereport'] command(s)"
         exp_log_err = get_expected_log_error(exp_err)
         caplog_tuple = caplog.record_tuples
@@ -363,7 +363,7 @@ def test_clusterinit_run_pods_failure(caplog):
             clusterinit.run_pods(None, ["discover"], "fake_img", "Never",
                                  "fake-conf-dir", "fake-install-dir", "2",
                                  "2", ["fakenode"], "", "", "vertical",
-                                 "vertical", "default", "-1")
+                                 "vertical", "default", "-1", False)
         caplog_tuple = caplog.record_tuples
         assert caplog_tuple[-2][2] == "{}".format(fake_exception)
         assert caplog_tuple[-1][2] == "Aborting cluster-init ..."
